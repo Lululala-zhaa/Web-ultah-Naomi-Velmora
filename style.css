@@ -23,14 +23,12 @@ body {
   gap: 20px;
 }
 
-/* <-------------neo brutalism global variables and base structural styles-------------> */
 button, #screen-menu, .how-to, #screen-game, #game-container, .hud-pill, #progress-wrap, #screen-menang, .birthday-banner, .birthday-message, #tangan-box {
   border: 4px solid #000000 !important;
   border-radius: 0px !important; 
   box-shadow: 6px 6px 0px #000000 !important;
 }
 
-/* <-------------menu screen neo brutalism design-------------> */
 #screen-menu {
   background: #ffffff;
   padding: 40px;
@@ -73,7 +71,7 @@ button, #screen-menu, .how-to, #screen-game, #game-container, .hud-pill, #progre
   font-size: 16px; 
   text-transform: uppercase; 
   margin-bottom: 8px; 
-  border-bottom: 2px solid #000;
+  border-bottom: 2px solid #00;
   display: inline-block;
 }
 .how-to li { color: #000000; font-size: 14px; margin-left: 16px; margin-bottom: 6px; }
@@ -96,7 +94,6 @@ button, #screen-menu, .how-to, #screen-game, #game-container, .hud-pill, #progre
   box-shadow: 2px 2px 0px #000000 !important; 
 }
 
-/* <-------------game interface neo brutalism components-------------> */
 #screen-game { 
   flex-direction: column; 
   align-items: center; 
@@ -104,12 +101,16 @@ button, #screen-menu, .how-to, #screen-game, #game-container, .hud-pill, #progre
   background: #ffdfeb; 
   padding: 20px;
   box-shadow: 8px 8px 0px #000000 !important;
+  width: 95vw;
+  max-width: 640px;
 }
 #hud {
   display: flex; 
-  gap: 16px; 
+  gap: 12px; 
   align-items: center;
   width: 100%;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 .hud-pill {
   background: #ffffff;
@@ -127,6 +128,7 @@ button, #screen-menu, .how-to, #screen-game, #game-container, .hud-pill, #progre
   flex-grow: 1;
   overflow: hidden;
   box-shadow: 4px 4px 0px #000000 !important;
+  min-width: 120px;
 }
 #progress-bar {
   height: 100%;
@@ -137,12 +139,15 @@ button, #screen-menu, .how-to, #screen-game, #game-container, .hud-pill, #progre
 }
 
 #game-container {
-  width: 600px;
-  height: 480px;
+  width: 100%;
+  max-width: 600px;
+  height: 60vh;
+  min-height: 380px;
   background: #ffffff;
   position: relative;
   overflow: hidden;
   box-shadow: 8px 8px 0px #000000 !important;
+  touch-action: none;
 }
 
 .cloud {
@@ -152,7 +157,8 @@ button, #screen-menu, .how-to, #screen-game, #game-container, .hud-pill, #progre
 #tangan-box {
   position: absolute;
   bottom: 15px;
-  left: 270px;
+  left: 50%;
+  transform: translateX(-50%);
   width: 64px;
   height: 64px;
   background: #ff6b9d;
@@ -186,11 +192,10 @@ button, #screen-menu, .how-to, #screen-game, #game-container, .hud-pill, #progre
 .score-pop {
   position: absolute; pointer-events: none;
   font-family: 'Fredoka One', cursive; font-size: 26px; color: #000000;
-  background: #fffb00; border: 2px solid #000; padding: 2px 6px;
+  background: #fffb00; border: 2px solid #00; padding: 2px 6px;
   animation: scoreFly 0.6s ease-out forwards; z-index: 10;
 }
 
-/* <-------------victory layout styling-------------> */
 #screen-menang {
   text-align: center;
   background: #ffffff;
@@ -202,9 +207,8 @@ button, #screen-menu, .how-to, #screen-game, #game-container, .hud-pill, #progre
 #tombol-surat { cursor: pointer; transition: transform 0.1s; display: inline-block; }
 #tombol-surat:hover { transform: scale(1.05); }
 #tombol-surat .letter-icon { font-size: 80px; display: block; }
-#tombol-surat p { color: #000; font-weight: 900; margin-top: 10px; }
+#tombol-surat p { color: #00; font-weight: 900; margin-top: 10px; }
 
-/* <-------------cat decorations around letter-------------> */
 .cat-deco {
   position: absolute;
   width: 64px;
@@ -258,7 +262,6 @@ button, #screen-menu, .how-to, #screen-game, #game-container, .hud-pill, #progre
 #btn-jumpscare:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #000000 !important; }
 #btn-jumpscare:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000000 !important; }
 
-/* <-------------original fake error overlay style setup-------------> */
 #bsod-overlay {
   position: fixed; inset: 0; background: #0078d7; color: #fff;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -277,10 +280,19 @@ button, #screen-menu, .how-to, #screen-game, #game-container, .hud-pill, #progre
 
 .hidden { display: none !important; }
 
-/* <-------------animations keyframes physics-------------> */
 @keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
 @keyframes wobble { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
 @keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-50px) scale(0.7); opacity: 0; } }
 @keyframes scoreFly { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-40px); opacity: 0; } }
 @keyframes confettiFall { 0% { transform: translateY(-20px) rotate(0deg); opacity: 1; } 100% { transform: translateY(600px) rotate(360deg); opacity: 0; } }
-.confetti-piece { position: fixed; pointer-events: none; z-index: 50; border: 2px solid #000; animation: confettiFall linear forwards; }
+.confetti-piece { position: fixed; pointer-events: none; z-index: 50; border: 2px solid #00; animation: confettiFall linear forwards; }
+
+@media (max-width: 500px) {
+  #screen-menu h1 { font-size: 26px; }
+  #screen-menu { padding: 20px; }
+  .birthday-banner h2 { font-size: 20px; }
+  .birthday-message { font-size: 13px; padding: 15px; }
+  #bsod-overlay { padding: 5%; }
+  #bsod-overlay h1 { font-size: 80px; }
+  #bsod-overlay p { font-size: 16px; }
+}
