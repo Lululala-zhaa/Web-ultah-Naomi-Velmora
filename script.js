@@ -52,7 +52,7 @@ const screenMenu    = document.getElementById('screen-menu');
 const screenGame    = document.getElementById('screen-game');
 const screenMenang  = document.getElementById('screen-menang');
 const gameContainer = document.getElementById('game-container');
-const tanganBox     = document.getElementById('tangan-box');
+const tanganBox      = document.getElementById('tangan-box');
 const skorDisplay   = document.getElementById('skor-display');
 const progressBar   = document.getElementById('progress-bar');
 const comboPill     = document.getElementById('combo-pill');
@@ -64,7 +64,7 @@ const bsodOverlay   = document.getElementById('bsod-overlay');
 
 let skor = 0, combo = 0, gameAktif = false, spawnInterval;
 let keys = { ArrowLeft: false, ArrowRight: false };
-let playerX = 270; 
+let playerX = 0; 
 let bsodActive = false;
 
 document.addEventListener('keydown', (e) => {
@@ -84,6 +84,18 @@ document.addEventListener('keyup', (e) => {
   if (e.key === 'ArrowLeft') keys.ArrowLeft = false;
   if (e.key === 'ArrowRight') keys.ArrowRight = false;
 });
+
+gameContainer.addEventListener('touchmove', (e) => {
+  if (!gameAktif) return;
+  e.preventDefault();
+  const touch = e.touches[0];
+  const rect = gameContainer.getBoundingClientRect();
+  let relativeX = touch.clientX - rect.left;
+  playerX = relativeX - (tanganBox.offsetWidth / 2);
+  const maxX = gameContainer.offsetWidth - tanganBox.offsetWidth;
+  playerX = Math.max(0, Math.min(playerX, maxX));
+  tanganBox.style.left = playerX + 'px';
+}, { passive: false });
 
 function gameLoop() {
   if (!gameAktif) return;
@@ -113,6 +125,9 @@ document.getElementById('btn-mulai').addEventListener('click', async (e) => {
   screenMenu.style.display = 'none';
   screenGame.style.display = 'flex';
   gameAktif = true;
+  
+  playerX = (gameContainer.offsetWidth / 2) - (tanganBox.offsetWidth / 2);
+  tanganBox.style.left = playerX + 'px';
   
   requestAnimationFrame(gameLoop);
   spawnInterval = setInterval(spawnCat, 1000);
@@ -222,7 +237,6 @@ tombolSurat.addEventListener('click', () => {
 });
 
 btnJumpscare.addEventListener('click', () => {
-  // Matikan musik otomatis saat prank aktif
   if (musicOn) {
     bgMusic.pause();
     musicOn = false;
