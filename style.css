@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@800;900&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  background: #ffc0cb; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  cursor: auto;
+}
+
+#wrapper {
+  position: relative; 
+  z-index: 1;
+  display: flex; 
+  flex-direction: column;
+  align-items: center; 
+  gap: 20px;
+}
+
+/* <-------------neo brutalism global variables and base structural styles-------------> */
+button, #screen-menu, .how-to, #screen-game, #game-container, .hud-pill, #progress-wrap, #screen-menang, .birthday-banner, .birthday-message, #tangan-box {
+  border: 4px solid #000000 !important;
+  border-radius: 0px !important; 
+  box-shadow: 6px 6px 0px #000000 !important;
+}
+
+/* <-------------menu screen neo brutalism design-------------> */
+#screen-menu {
+  background: #ffffff;
+  padding: 40px;
+  text-align: center;
+  max-width: 500px;
+  width: 90vw;
+}
+#screen-menu .emoji-title {
+  font-size: 64px;
+  display: block;
+  margin-bottom: 8px;
+  animation: bounce 1s infinite alternate;
+}
+#screen-menu h1 {
+  font-family: 'Fredoka One', cursive;
+  font-size: 42px;
+  color: #000000;
+  text-transform: uppercase;
+  background: #ff6b9d;
+  padding: 10px;
+  border: 4px solid #000000;
+  box-shadow: 4px 4px 0px #000000;
+  margin-bottom: 20px;
+}
+#screen-menu p {
+  color: #000000;
+  font-size: 16px;
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.how-to {
+  background: #ffdfeb;
+  padding: 16px;
+  margin-bottom: 24px;
+  text-align: left;
+  box-shadow: 4px 4px 0px #000000 !important;
+}
+.how-to h3 { 
+  color: #000000; 
+  font-size: 16px; 
+  text-transform: uppercase; 
+  margin-bottom: 8px; 
+  border-bottom: 2px solid #000;
+  display: inline-block;
+}
+.how-to li { color: #000000; font-size: 14px; margin-left: 16px; margin-bottom: 6px; }
+
+#btn-mulai {
+  background: #ff6b9d;
+  color: #000000;
+  padding: 16px 40px;
+  font-size: 22px;
+  font-family: 'Fredoka One', cursive;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+#btn-mulai:hover { 
+  transform: translate(-2px, -2px); 
+  box-shadow: 8px 8px 0px #000000 !important; 
+}
+#btn-mulai:active { 
+  transform: translate(4px, 4px); 
+  box-shadow: 2px 2px 0px #000000 !important; 
+}
+
+/* <-------------game interface neo brutalism components-------------> */
+#screen-game { 
+  flex-direction: column; 
+  align-items: center; 
+  gap: 16px; 
+  background: #ffdfeb; 
+  padding: 20px;
+  box-shadow: 8px 8px 0px #000000 !important;
+}
+#hud {
+  display: flex; 
+  gap: 16px; 
+  align-items: center;
+  width: 100%;
+}
+.hud-pill {
+  background: #ffffff;
+  padding: 8px 16px;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 900;
+  box-shadow: 4px 4px 0px #000000 !important;
+}
+.hud-pill span { font-family: 'Fredoka One', cursive; font-size: 20px; }
+
+#progress-wrap {
+  background: #ffffff;
+  height: 24px;
+  flex-grow: 1;
+  overflow: hidden;
+  box-shadow: 4px 4px 0px #000000 !important;
+}
+#progress-bar {
+  height: 100%;
+  background: #ff6b9d;
+  width: 0%;
+  border-right: 4px solid #000000;
+  transition: width 0.3s ease;
+}
+
+#game-container {
+  width: 600px;
+  height: 480px;
+  background: #ffffff;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 8px 8px 0px #000000 !important;
+}
+
+.cloud {
+  position: absolute; background: #ffc0cb; border: 2px solid #000000; pointer-events: none;
+}
+
+#tangan-box {
+  position: absolute;
+  bottom: 15px;
+  left: 270px;
+  width: 64px;
+  height: 64px;
+  background: #ff6b9d;
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  pointer-events: none;
+  z-index: 5;
+  font-size: 38px;
+  box-shadow: 3px 3px 0px #000000 !important;
+}
+#tangan-box.catch-flash { background: #fffb00 !important; }
+
+.kucing-elem {
+  position: absolute;
+  width: 52px;
+  height: 52px;
+  border: 3px solid #000000;
+  background: #ffffff;
+  box-shadow: 4px 4px 0px #000000;
+  user-select: none;
+  pointer-events: none;
+}
+.kucing-elem img { width: 100%; height: 100%; object-fit: contain; }
+.kucing-elem.wobbly { animation: wobble 0.2s infinite alternate; }
+
+.particle {
+  position: absolute; pointer-events: none; font-size: 24px;
+  animation: floatUp 0.6s ease-out forwards; z-index: 10;
+}
+.score-pop {
+  position: absolute; pointer-events: none;
+  font-family: 'Fredoka One', cursive; font-size: 26px; color: #000000;
+  background: #fffb00; border: 2px solid #000; padding: 2px 6px;
+  animation: scoreFly 0.6s ease-out forwards; z-index: 10;
+}
+
+/* <-------------victory layout styling-------------> */
+#screen-menang {
+  text-align: center;
+  background: #ffffff;
+  padding: 40px;
+  max-width: 500px;
+  width: 90vw;
+  box-shadow: 10px 10px 0px #000000 !important;
+}
+#tombol-surat { cursor: pointer; transition: transform 0.1s; display: inline-block; }
+#tombol-surat:hover { transform: scale(1.05); }
+#tombol-surat .letter-icon { font-size: 80px; display: block; }
+#tombol-surat p { color: #000; font-weight: 900; margin-top: 10px; }
+
+/* <-------------cat decorations around letter-------------> */
+.cat-deco {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border: 3px solid #000000;
+  background: #ffffff;
+  box-shadow: 4px 4px 0px #000000;
+  z-index: 10;
+}
+.cat-deco img { width: 100%; height: 100%; object-fit: contain; padding: 4px; }
+.cat-top-left { top: -25px; left: -25px; transform: rotate(-15deg); }
+.cat-top-right { top: -25px; right: -25px; transform: rotate(15deg); }
+.cat-bottom-left { bottom: -25px; left: -25px; transform: rotate(-10deg); }
+.cat-bottom-right { bottom: -25px; right: -25px; transform: rotate(10deg); }
+
+.birthday-banner {
+  background: #ff6b9d;
+  color: #000000; 
+  padding: 20px; 
+  margin-bottom: 20px;
+  box-shadow: 4px 4px 0px #000000 !important;
+}
+.birthday-banner h2 { font-family: 'Fredoka One', cursive; font-size: 28px; }
+.birthday-banner p { font-size: 16px; margin-top: 5px; }
+
+.birthday-message {
+  background: #ffdfeb; 
+  padding: 20px; 
+  margin-bottom: 24px; 
+  font-size: 15px; 
+  color: #000000; 
+  line-height: 1.6;
+  text-align: left;
+  box-shadow: 4px 4px 0px #000000 !important;
+}
+.birthday-message .name-highlight {
+  font-family: 'Fredoka One', cursive; font-size: 22px; color: #000000; display: block; margin-bottom: 8px;
+}
+
+#btn-jumpscare {
+  background: #ff4757;
+  color: #ffffff; 
+  border: 4px solid #000000; 
+  padding: 14px 32px; 
+  font-size: 18px;
+  font-family: 'Fredoka One', cursive; 
+  cursor: pointer;
+  box-shadow: 4px 4px 0px #000000 !important;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+#btn-jumpscare:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px #000000 !important; }
+#btn-jumpscare:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0px #000000 !important; }
+
+/* <-------------original fake error overlay style setup-------------> */
+#bsod-overlay {
+  position: fixed; inset: 0; background: #0078d7; color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 9999; padding: 8% 10%; flex-direction: column; justify-content: center;
+}
+
+#audio-toggle {
+  position: fixed; top: 16px; right: 16px; z-index: 100;
+  background: #ffffff; border: 3px solid #000000;
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 20px; color: #000000;
+  box-shadow: 3px 3px 0px #000000;
+}
+#audio-toggle:active { transform: translate(2px, 2px); box-shadow: 1px 1px 0px #000000; }
+
+.hidden { display: none !important; }
+
+/* <-------------animations keyframes physics-------------> */
+@keyframes bounce { 0% { transform: translateY(0); } 100% { transform: translateY(-10px); } }
+@keyframes wobble { from { transform: rotate(-6deg); } to { transform: rotate(6deg); } }
+@keyframes floatUp { 0% { transform: translateY(0) scale(1); opacity: 1; } 100% { transform: translateY(-50px) scale(0.7); opacity: 0; } }
+@keyframes scoreFly { 0% { transform: translateY(0); opacity: 1; } 100% { transform: translateY(-40px); opacity: 0; } }
+@keyframes confettiFall { 0% { transform: translateY(-20px) rotate(0deg); opacity: 1; } 100% { transform: translateY(600px) rotate(360deg); opacity: 0; } }
+.confetti-piece { position: fixed; pointer-events: none; z-index: 50; border: 2px solid #000; animation: confettiFall linear forwards; }
